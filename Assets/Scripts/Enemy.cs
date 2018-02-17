@@ -26,6 +26,7 @@ public class Enemy : Entity
 	
 	private bool _isBlockedByBarrier()
 	{
+        return true;
         // Vector2 top_left = new Vector2(transform.position.x - 0.3F, transform.position.y - distToGround);
         // Vector2 bot_right = new Vector2(transform.position.x + 0.3F, transform.position.y - distToGround - 0.3F);
         // return Physics2D.OverlapArea(top_left, bot_right, groundLayers);
