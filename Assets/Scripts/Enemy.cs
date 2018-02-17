@@ -6,8 +6,12 @@ public class Enemy : Entity
 {
 
 	public float Speed = 5F;
+	public float Damage = 10F;
 
 	private Rigidbody2D _rigidbody;
+	private float _nextAttack = 0F;
+
+	private GameObject _target = null;
 
 	// Use this for initialization
 	public void Start ()
@@ -22,13 +26,27 @@ public class Enemy : Entity
 	{
 		base.Update();
 		_rigidbody.velocity = Vector2.right * Speed;
+
+
+		if (_target != null)
+		{
+            _tryAttack();
+		}
+		
 	}
-	
-	private bool _isBlockedByBarrier()
+
+	private void _tryAttack()
 	{
-        return true;
-        // Vector2 top_left = new Vector2(transform.position.x - 0.3F, transform.position.y - distToGround);
-        // Vector2 bot_right = new Vector2(transform.position.x + 0.3F, transform.position.y - distToGround - 0.3F);
-        // return Physics2D.OverlapArea(top_left, bot_right, groundLayers);
+		if (Time.time > _nextAttack)
+		{
+            var trapScript = _target.GetComponent<Trap>();
+            trapScript.TakeDamage(Damage);
+            _nextAttack = Time.time + 1.0F;
+		}
+	}
+
+	public void StartAttacking(GameObject target)
+	{
+			_target = target;
 	}
 }

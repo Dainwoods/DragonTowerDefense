@@ -5,13 +5,14 @@ using UnityEngine;
 public class Entity : MonoBehaviour {
 	
 		
-	public float MaxHealth = 100;
+	public float MaxHealth = 100F;
 	public float Health { get; set; }
+	public bool Damageable = false;
 	
 	// Use this for initialization
-	public void Start () {
-		
-		
+	public void Start ()
+	{
+		Health = MaxHealth;
 	}
 	
 	// Update is called once per frame
@@ -21,6 +22,7 @@ public class Entity : MonoBehaviour {
 
 	public void TakeDamage(float damage)
 	{
+		Debug.Log(Health);
 		Health -= damage;
 		if (Health <= 0)
 		{
