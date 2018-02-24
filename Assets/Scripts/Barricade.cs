@@ -13,4 +13,10 @@ public class Barricade : Trap {
 	public void Update () {
 		base.Update();
 	}
+
+	public void Deactivate()
+	{
+		base.Deactivate();
+		GetComponent<BoxCollider2D>().isTrigger = true;
+	}
 }

@@ -32,7 +32,7 @@ public class Spike : Trap
 	}
 	
 	public void OnTriggerEnter2D(Collider2D collision) {
-		if (collision.gameObject.CompareTag("Enemy"))
+		if (IsActive && collision.gameObject.CompareTag("Enemy"))
 		{
 			Enemy enemy = collision.gameObject.GetComponent<Enemy>();
 			_enemies.Add(enemy);
@@ -41,7 +41,7 @@ public class Spike : Trap
 
 	public void OnTriggerExit2D(Collider2D collision)
 	{
-		if (collision.gameObject.CompareTag("Enemy"))
+		if (IsActive && collision.gameObject.CompareTag("Enemy"))
 		{
 			Enemy enemy = collision.gameObject.GetComponent<Enemy>();
 			_enemies.Remove(enemy);
