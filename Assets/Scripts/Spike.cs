@@ -26,6 +26,7 @@ public class Spike : Trap
 			for (int i = 0; i < _enemies.Count; i++)
 			{
 				_enemies[i].TakeDamage(Damage);
+				Health -= 1;
 			}
 			_nextAttack = Time.time + DamageDelay;
 		}
