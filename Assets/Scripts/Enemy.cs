@@ -64,6 +64,12 @@ public class Enemy : Entity
 			}
 		}
 		
+		Vector3 screenPoint = Camera.main.WorldToViewportPoint(transform.position);
+		if (screenPoint.x < -.1)
+		{
+			Destroy(gameObject);
+		};
+
 	}
 
 	private void _tryAttack()
