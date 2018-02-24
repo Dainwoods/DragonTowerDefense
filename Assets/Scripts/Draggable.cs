@@ -6,6 +6,8 @@ using UnityEngine.EventSystems;
 public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler {
 
     public Transform parentToReturnTo = null;
+    public GameObject TrapToCreate = null;
+    private Camera _camera = null;
 
     public void OnBeginDrag(PointerEventData eventData) {
         Debug.Log("onBeginDrag");
@@ -19,7 +21,6 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 
             GetComponent<CanvasGroup>().blocksRaycasts = false;
         }
-
     }
 
     public void OnDrag(PointerEventData eventData) {
@@ -31,12 +32,24 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 
     public void OnEndDrag(PointerEventData eventData) {
         Debug.Log("OnEndDrag");
+        if (_camera == null)
+        {
+            _camera = Camera.main;
+        }
 
-        if (this.transform.parent.name == "TrapUI") {
+        if (this.transform.parent.name == "TrapUI")
+        {
             this.transform.SetParent(parentToReturnTo);
             parentToReturnTo = null;
 
             GetComponent<CanvasGroup>().blocksRaycasts = true;
+        }
+        else
+        {
+            Vector3 point = _camera.ScreenToWorldPoint(transform.position);
+            point = new Vector3(point.x, point.y, 0);
+            Instantiate(TrapToCreate, point, Quaternion.identity);
+            Destroy(gameObject);
         }
     }
 }
