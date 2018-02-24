@@ -19,6 +19,11 @@ public class Trap : Entity
 		
 		transform.position = new Vector3(transform.position.x, newY, transform.position.z);
 	}
+
+//	private bool _canPlace()
+//	{
+//		
+//	}
 	
 	// Update is called once per frame
 	public void Update () {
