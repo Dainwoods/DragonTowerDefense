@@ -7,6 +7,8 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 
     public Transform parentToReturnTo = null;
     public GameObject TrapToCreate = null;
+    public int cost;
+
     private Camera _camera = null;
     private GameObject _trapIndicator;
 
@@ -15,14 +17,16 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 
         if (this.transform.parent.name == "TrapUI") {
             GameObject clone = Instantiate(eventData.pointerDrag) as GameObject;
+            int currentSiblingIndex = eventData.pointerDrag.transform.GetSiblingIndex();
             clone.transform.SetParent(this.transform.parent);
+            clone.transform.SetSiblingIndex(currentSiblingIndex);
             
             parentToReturnTo = this.transform.parent;
             this.transform.SetParent(this.transform.parent.parent);
 
             GetComponent<CanvasGroup>().blocksRaycasts = false;
             
-        }
+    }
         
         // Create an indicator of where the trap will land
         _trapIndicator = CreateOnPosition();
@@ -70,13 +74,17 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 
             GetComponent<CanvasGroup>().blocksRaycasts = true;
         }
-        else if (canPlace())
+        else if (canPlace() && RoundHandler.gold >= cost)
         {
             CreateOnPosition();
             Destroy(gameObject);
+
+            // Update current gold
+            RoundHandler.gold = RoundHandler.gold - cost;
         }
         Destroy(gameObject);
         Destroy(_trapIndicator);
+
     }
 
     public GameObject CreateOnPosition()
