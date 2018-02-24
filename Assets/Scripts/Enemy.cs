@@ -12,17 +12,37 @@ public class Enemy : Entity
 	private float _nextAttack = 0F;
 
 	private GameObject _target = null;
+	private bool _retreating = false;
 
 	// Use this for initialization
-	public void Start ()
+	public new void Start ()
 	{
 		base.Start();
 		_rigidbody = GetComponent<Rigidbody2D>();
 		Health = MaxHealth;
 	}
+
+	private void ChangeDirection()
+	{
+		if (!_retreating)
+		{
+			_retreating = true;
+            Vector3 newScale = transform.localScale;
+            newScale.x *= -1;
+            transform.localScale = newScale;
+		}
+	}
+
+	public void OnTriggerEnter2D(Collider2D collision)
+	{
+		if (collision.gameObject.CompareTag("Player"))
+		{
+			ChangeDirection();
+		}
+	}
 	
 	// Update is called once per frame
-	public void Update ()
+	public new void Update ()
 	{
 		base.Update();
 
@@ -33,7 +53,14 @@ public class Enemy : Entity
 		}
 		else
 		{
-            _rigidbody.velocity = Vector2.right * Speed;
+			if (_retreating)
+			{
+				_rigidbody.velocity = Vector2.left * Speed;
+			}
+			else
+			{
+				_rigidbody.velocity = Vector2.right * Speed;
+			}
 		}
 		
 	}

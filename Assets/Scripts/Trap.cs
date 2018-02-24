@@ -27,7 +27,7 @@ public class Trap : Entity
 	}
 
 	// Use this for initialization
-	public void Start () {
+	public new void Start () {
 		base.Start();
 		
 		// Snap traps to ground.

@@ -11,7 +11,7 @@ public class Spike : Trap
 	private float _nextAttack = 0F;
 
 	// Update is called once per frame
-	public void Update () {
+	public new void Update () {
 		base.Update();
 
 		if (Time.time > _nextAttack)

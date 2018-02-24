@@ -26,7 +26,7 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 
             GetComponent<CanvasGroup>().blocksRaycasts = false;
             
-        }
+    }
         
         // Create an indicator of where the trap will land
         _trapIndicator = CreateOnPosition();
