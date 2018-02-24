@@ -10,15 +10,8 @@ public class Spike : Trap
 	private List<Enemy> _enemies = new List<Enemy>();
 	private float _nextAttack = 0F;
 
-	// Use this for initialization
-	public void Start () {
-		base.Start();
-		
-		// Maintain a list of enemies currently being attacked by these spikes.
-	}
-	
 	// Update is called once per frame
-	public void Update () {
+	public new void Update () {
 		base.Update();
 
 		if (Time.time > _nextAttack)
@@ -27,6 +20,7 @@ public class Spike : Trap
 			{
 				_enemies[i].TakeDamage(Damage);
 			}
+            Health -= 1;
 			_nextAttack = Time.time + DamageDelay;
 		}
 	}

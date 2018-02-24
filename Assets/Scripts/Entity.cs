@@ -6,9 +6,16 @@ public class Entity : MonoBehaviour {
 	
 		
 	public float MaxHealth = 100F;
-	public float Health { get; set; }
+
+	public virtual float Health
+	{
+		get { return _health; }
+		set { _health = Mathf.Max(value, 0); }
+	}
+
 	public bool Damageable = false;
-	
+	private float _health;
+
 	// Use this for initialization
 	public void Start ()
 	{
