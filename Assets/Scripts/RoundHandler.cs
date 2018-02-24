@@ -11,7 +11,7 @@ public class RoundHandler : MonoBehaviour {
     private bool roundReady;
     private int gold;
     private bool move;
-    private int distance;
+    private float distance;
 
     public int firstRound;
     public int secondRound;
@@ -22,6 +22,7 @@ public class RoundHandler : MonoBehaviour {
     public Text goldText;
     public GameObject background;
     public float travelDistance;
+    public float speed;
 
     // Use this for initialization
     void Start () {
@@ -57,6 +58,7 @@ public class RoundHandler : MonoBehaviour {
             curRound++;
             gold += curRound * 2;
             move = true;
+            distance = 0;
         }
         if (Input.GetKeyDown(KeyCode.Space) && roundReady && curRound < 3) {
             roundReady = false;
@@ -67,7 +69,13 @@ public class RoundHandler : MonoBehaviour {
         }
         goldText.text = "Gold: " + gold;
         if(move && distance < travelDistance) {
-
+            Vector3 oldPosition = background.transform.position;
+            background.transform.Translate(-transform.right * Time.deltaTime * speed);
+            Debug.Log(background.transform.position);
+            distance += Vector3.Distance(oldPosition, background.transform.position);
+        }
+        else if(distance == travelDistance) {
+            move = false;
         }
 	}
 

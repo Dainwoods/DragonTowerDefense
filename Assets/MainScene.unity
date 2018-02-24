@@ -766,7 +766,8 @@ MonoBehaviour:
   startGold: 10
   goldText: {fileID: 1268632394}
   background: {fileID: 51972518}
-  travelDistance: 17.74
+  travelDistance: 17.72
+  speed: 10
 --- !u!4 &1456268972
 Transform:
   m_ObjectHideFlags: 0
