@@ -26,6 +26,7 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         
         // Create an indicator of where the trap will land
         _trapIndicator = CreateOnPosition();
+        _trapIndicator.GetComponent<Trap>().Deactivate();
     }
 
     public void OnDrag(PointerEventData eventData)

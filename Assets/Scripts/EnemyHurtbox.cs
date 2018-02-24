@@ -16,8 +16,13 @@ public class EnemyHurtbox : MonoBehaviour {
 	public void OnTriggerEnter2D(Collider2D collision) {
 		if (collision.gameObject.CompareTag("DamageableTrap"))
 		{
-			var parentScript = transform.parent.gameObject.GetComponent<Enemy>();
-			parentScript.StartAttacking(collision.gameObject);
+			
+			// Don't interact with trap indicators
+			if (collision.gameObject.GetComponent<Trap>().IsActive)
+			{
+                var parentScript = transform.parent.gameObject.GetComponent<Enemy>();
+                parentScript.StartAttacking(collision.gameObject);
+			}
 		}
 	}
 	

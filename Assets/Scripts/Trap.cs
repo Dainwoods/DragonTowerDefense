@@ -6,6 +6,7 @@ public class Trap : Entity
 {
 
 	public float Cost;
+	public bool IsActive = true;
 
 	// Use this for initialization
 	public void Start () {
@@ -20,11 +21,11 @@ public class Trap : Entity
 		transform.position = new Vector3(transform.position.x, newY, transform.position.z);
 	}
 
-//	private bool _canPlace()
-//	{
-//		
-//	}
-	
+	public void Deactivate()
+	{
+		IsActive = false;
+	}
+
 	// Update is called once per frame
 	public void Update () {
 		base.Update();

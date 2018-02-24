@@ -25,12 +25,15 @@ public class Enemy : Entity
 	public void Update ()
 	{
 		base.Update();
-		_rigidbody.velocity = Vector2.right * Speed;
 
 
 		if (_target != null)
 		{
-            _tryAttack();
+			_tryAttack();
+		}
+		else
+		{
+            _rigidbody.velocity = Vector2.right * Speed;
 		}
 		
 	}
