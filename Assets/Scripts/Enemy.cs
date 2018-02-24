@@ -30,6 +30,7 @@ public class Enemy : Entity
             Vector3 newScale = transform.localScale;
             newScale.x *= -1;
             transform.localScale = newScale;
+			RoundHandler.gold -= 1;
 		}
 	}
 

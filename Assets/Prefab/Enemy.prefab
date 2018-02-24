@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 61113295042634100}
   - component: {fileID: 50906704564761622}
   - component: {fileID: 114622038252482982}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 212552093554060724}
   - component: {fileID: 61095491348726314}
   - component: {fileID: 114383974145156196}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: EnemyHurtbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
