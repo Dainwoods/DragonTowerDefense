@@ -6,6 +6,7 @@ TagManager:
   tags:
   - DamageableTrap
   - Enemy
+  - Floor
   layers:
   - Default
   - TransparentFX

@@ -132,7 +132,7 @@ Prefab:
     - target: {fileID: 224906362305374418, guid: cfbb0cfc496b20b46be997bf42dcfd6a,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: 56.4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224906362305374418, guid: cfbb0cfc496b20b46be997bf42dcfd6a,
         type: 2}
@@ -550,7 +550,7 @@ Prefab:
     - target: {fileID: 224906362305374418, guid: cfbb0cfc496b20b46be997bf42dcfd6a,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: 56.4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224906362305374418, guid: cfbb0cfc496b20b46be997bf42dcfd6a,
         type: 2}
@@ -929,6 +929,10 @@ Prefab:
     - target: {fileID: 4903066085704574, guid: 9ed70ab677810480c8163cf9eac910d5, type: 2}
       propertyPath: m_RootOrder
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1055274221342480, guid: 9ed70ab677810480c8163cf9eac910d5, type: 2}
+      propertyPath: m_TagString
+      value: Floor
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9ed70ab677810480c8163cf9eac910d5, type: 2}
