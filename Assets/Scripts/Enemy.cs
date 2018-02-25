@@ -7,12 +7,35 @@ public class Enemy : Entity
 
 	public float Speed = 5F;
 	public float Damage = 10F;
+	public GameObject Gold;
 
 	private Rigidbody2D _rigidbody;
 	private float _nextAttack = 0F;
 
 	private GameObject _target = null;
 	private bool _retreating = false;
+	
+	
+	public override float Health
+	{
+		set
+		{
+			base.Health = value;
+			if (Health <= 0)
+			{
+				Die();
+			}
+		}
+	}
+
+	public void Die()
+	{
+		Destroy(gameObject);
+		if (_retreating)
+		{
+            Instantiate(Gold, transform.position, Quaternion.identity);
+		}
+	}
 
 	// Use this for initialization
 	public new void Start ()
@@ -22,7 +45,7 @@ public class Enemy : Entity
 		Health = MaxHealth;
 	}
 
-	private void ChangeDirection()
+	public void ChangeDirection()
 	{
 		if (!_retreating)
 		{
