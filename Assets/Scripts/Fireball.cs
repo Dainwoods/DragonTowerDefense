@@ -18,7 +18,8 @@ public class Fireball : MonoBehaviour {
 			var fireballIn = Instantiate(FireballPrefab, transform.position, transform.rotation);
 			Vector2 fireOrigin = new Vector2 (Fire.position.x,Fire.position.y);
 			Vector2 fireDirection = target - fireOrigin;
-			fireballIn.GetComponent<Rigidbody2D> ().velocity = fireDirection;
+			fireDirection.Normalize();
+			fireballIn.GetComponent<Rigidbody2D> ().velocity = fireDirection*10f;
 		}
 	}
 }

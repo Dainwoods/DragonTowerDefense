@@ -21,6 +21,9 @@ GameObject:
   - component: {fileID: 4511985700556042}
   - component: {fileID: 212849627894140234}
   - component: {fileID: 50953843801858470}
+  - component: {fileID: 61519670609916494}
+  - component: {fileID: 66136791964882330}
+  - component: {fileID: 114291340825436942}
   m_Layer: 0
   m_Name: fireball fix
   m_TagString: Untagged
@@ -52,7 +55,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 0.3
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -61,6 +64,76 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!61 &61519670609916494
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1669922444906080}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 1
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 10.85, y: 11.99}
+    newSize: {x: 10.85, y: 11.99}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 8.63, y: 9.33}
+  m_EdgeRadius: 0
+--- !u!66 &66136791964882330
+CompositeCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1669922444906080}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_GeometryType: 0
+  m_GenerationType: 0
+  m_EdgeRadius: 0
+  m_ColliderPaths:
+  - m_Collider: {fileID: 61519670609916494}
+    m_ColliderPaths:
+    - - X: 10787500
+        Y: 11662500
+      - X: -10787500
+        Y: 11662500
+      - X: -10787500
+        Y: -11662500
+      - X: 10787500
+        Y: -11662500
+  m_CompositePaths:
+    m_Paths:
+    - - {x: 1.07875, y: 1.16625}
+      - {x: -1.07875, y: 1.16625}
+      - {x: -1.07875, y: -1.16625}
+      - {x: 1.07875, y: -1.16625}
+  m_VertexDistance: 0.0005
+--- !u!114 &114291340825436942
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1669922444906080}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d65e7328ee0e5e0499a0eeed1dac9cfa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &212849627894140234
 SpriteRenderer:
   m_ObjectHideFlags: 1

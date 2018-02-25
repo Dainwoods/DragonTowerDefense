@@ -198,6 +198,16 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 66136791964882330, guid: ce45268a3b1933945b1a9d254d73a9fc,
+        type: 2}
+      propertyPath: m_ColliderPaths.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 66136791964882330, guid: ce45268a3b1933945b1a9d254d73a9fc,
+        type: 2}
+      propertyPath: m_CompositePaths.m_Paths.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4511985700556042, guid: ce45268a3b1933945b1a9d254d73a9fc, type: 2}
       propertyPath: m_LocalPosition.x
       value: 6.62
@@ -288,7 +298,7 @@ Prefab:
     - target: {fileID: 224906362305374418, guid: cfbb0cfc496b20b46be997bf42dcfd6a,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -56.4
       objectReference: {fileID: 0}
     - target: {fileID: 224906362305374418, guid: cfbb0cfc496b20b46be997bf42dcfd6a,
         type: 2}
@@ -801,7 +811,7 @@ Prefab:
     - target: {fileID: 224906362305374418, guid: cfbb0cfc496b20b46be997bf42dcfd6a,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -56.4
       objectReference: {fileID: 0}
     - target: {fileID: 224906362305374418, guid: cfbb0cfc496b20b46be997bf42dcfd6a,
         type: 2}
@@ -1219,7 +1229,7 @@ Prefab:
     - target: {fileID: 224906362305374418, guid: cfbb0cfc496b20b46be997bf42dcfd6a,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -56.4
       objectReference: {fileID: 0}
     - target: {fileID: 224906362305374418, guid: cfbb0cfc496b20b46be997bf42dcfd6a,
         type: 2}
