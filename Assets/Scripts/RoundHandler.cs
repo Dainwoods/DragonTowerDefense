@@ -9,7 +9,6 @@ public class RoundHandler : MonoBehaviour {
     private int[] enemyArr;
     private int aliveEnemies;
     private bool roundReady;
-    private int gold;
     private bool move;
     private int distance;
 
@@ -19,6 +18,7 @@ public class RoundHandler : MonoBehaviour {
     public float spawnWait;
     public GameObject enemy;
     public int startGold;
+    public static int gold;
     public Text goldText;
     public GameObject background;
     public float travelDistance;
