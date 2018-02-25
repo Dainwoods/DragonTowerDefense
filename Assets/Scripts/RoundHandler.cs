@@ -54,6 +54,7 @@ public class RoundHandler : MonoBehaviour {
         aliveEnemies = enemies.Length;
         if(aliveEnemies == 0 && curRound < 3 && enemyArr[curRound] == 0) {
             destroyTraps();
+            destroyCoins();
             roundReady = true;
             curRound++;
             gold += curRound * 2;
@@ -87,6 +88,17 @@ public class RoundHandler : MonoBehaviour {
         traps = GameObject.FindGameObjectsWithTag("DamageableTrap");
         for (int i = 0; i < traps.Length; i++) {
             Destroy(traps[i]);
+        }
+    }
+
+    void destroyCoins()
+    {
+        // Retrieve all fallen gold
+        GameObject[] coins = GameObject.FindGameObjectsWithTag("Coin");
+        for (int i = 0; i < coins.Length; i++)
+        {
+            Destroy(coins[i]);
+            RoundHandler.gold += 1;
         }
     }
 }

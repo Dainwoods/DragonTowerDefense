@@ -13,7 +13,7 @@ public class Enemy : Entity
 	private float _nextAttack = 0F;
 
 	private GameObject _target = null;
-	private bool _retreating = false;
+	public bool Retreating = false;
 	
 	
 	public override float Health
@@ -31,7 +31,7 @@ public class Enemy : Entity
 	public void Die()
 	{
 		Destroy(gameObject);
-		if (_retreating)
+		if (Retreating)
 		{
             Instantiate(Gold, transform.position, Quaternion.identity);
 		}
@@ -47,9 +47,9 @@ public class Enemy : Entity
 
 	public void ChangeDirection()
 	{
-		if (!_retreating)
+		if (!Retreating)
 		{
-			_retreating = true;
+			Retreating = true;
             Vector3 newScale = transform.localScale;
             newScale.x *= -1;
             transform.localScale = newScale;
@@ -77,7 +77,7 @@ public class Enemy : Entity
 		}
 		else
 		{
-			if (_retreating)
+			if (Retreating)
 			{
 				_rigidbody.velocity = Vector2.left * Speed;
 			}
