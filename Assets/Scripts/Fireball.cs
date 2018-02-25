@@ -12,7 +12,7 @@ public class Fireball : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetMouseButton (0)) {
+		if (false && Input.GetMouseButton (0)) {
 			Vector2 target = Camera.main.ScreenToWorldPoint (new Vector2 (Input.mousePosition.x, 
 				Input.mousePosition.y));
 			var fireballIn = Instantiate(FireballPrefab, transform.position, transform.rotation);

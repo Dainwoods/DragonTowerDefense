@@ -39,7 +39,7 @@ public class RoundHandler : MonoBehaviour {
 	}
 	
     void spawnEnemy() {
-        Vector3 spawnPosition = new Vector3(-10, -4, 0);
+        Vector3 spawnPosition = new Vector3(-10, 0, 0);
         Quaternion spawnRotiation = Quaternion.identity;
         Instantiate(enemy, spawnPosition, spawnRotiation);
         enemyArr[curRound]--;
@@ -67,7 +67,7 @@ public class RoundHandler : MonoBehaviour {
         if(Input.GetKeyDown(KeyCode.E) && aliveEnemies > 0) {
             Destroy(enemies[0]);
         }
-        goldText.text = "Gold: " + gold;
+        goldText.text = "" + gold;
         if(move && distance < travelDistance) {
             Vector3 oldPosition = background.transform.position;
             background.transform.Translate(-transform.right * Time.deltaTime * speed);

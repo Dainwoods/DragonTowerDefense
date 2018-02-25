@@ -14,9 +14,11 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 
     public void OnBeginDrag(PointerEventData eventData) {
         Debug.Log("onBeginDrag");
+        GetComponent<RectTransform>().localScale = new Vector3(0, 0, 0);
 
         if (this.transform.parent.name == "TrapUI") {
             GameObject clone = Instantiate(eventData.pointerDrag) as GameObject;
+            clone.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
             int currentSiblingIndex = eventData.pointerDrag.transform.GetSiblingIndex();
             clone.transform.SetParent(this.transform.parent);
             clone.transform.SetSiblingIndex(currentSiblingIndex);
@@ -25,7 +27,6 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
             this.transform.SetParent(this.transform.parent.parent);
 
             GetComponent<CanvasGroup>().blocksRaycasts = false;
-            
     }
         
         // Create an indicator of where the trap will land
