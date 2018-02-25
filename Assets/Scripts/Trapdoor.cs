@@ -13,6 +13,8 @@ public class Trapdoor : Trap {
 //			Rigidbody2D enemyRigidbody = enemy.GetComponent<Rigidbody2D>();
 //			enemyRigidbody.isKinematic = true;
 //			enemyRigidbody.velocity = Vector2.down;
+
+			Health -= 1;
 		}
 	}
 }
