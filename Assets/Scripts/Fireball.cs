@@ -9,8 +9,18 @@ public class Fireball : MonoBehaviour {
 		{
 			Debug.Log("Collided with enemy");
 			Enemy enemy = collision.gameObject.GetComponent<Enemy>();
-			enemy.TakeDamage(10000);
 			Destroy(gameObject);
+			
+			
+//            var enemyLayer = 1 << LayerMask.NameToLayer("Trap");
+			Collider2D[] collisions = Physics2D.OverlapCircleAll(transform.position, 2);
+			for (int i = 0; i < collisions.Length; i++)
+			{
+				if (collisions[i].CompareTag("Enemy"))
+				{
+                    collisions[i].GetComponent<Enemy>().TakeDamage(1000);
+				}
+			}
 		}
 
 		if (collision.gameObject.CompareTag("Floor"))
