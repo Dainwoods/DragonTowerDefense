@@ -22,6 +22,8 @@ public class RoundHandler : MonoBehaviour {
     public int startGold;
     public Text goldText;
     public Text roundText;
+    public Text roundReadyText;
+    public Button nextRoundButton;
     public GameObject background;
     public float travelDistance;
     public float speed;
@@ -38,8 +40,17 @@ public class RoundHandler : MonoBehaviour {
         gold = startGold;
         move = false;
         distance = 0;
-	}
-	
+
+        nextRoundButton.onClick.AddListener(startNextRound);
+    }
+
+    void startNextRound() {
+        if (roundReady && curRound < 3) {
+            roundReady = false;
+            spawnEnemy();
+        }
+    }
+
     void spawnEnemy() {
         Vector3 spawnPosition = new Vector3(-10, 0, 0);
         Quaternion spawnRotiation = Quaternion.identity;
@@ -63,6 +74,13 @@ public class RoundHandler : MonoBehaviour {
             move = true;
             distance = 0;
         }
+
+        if (roundReady) {
+            nextRoundButton.gameObject.SetActive(true);
+        } else {
+            nextRoundButton.gameObject.SetActive(false);
+        }
+
         if (Input.GetKeyDown(KeyCode.Space) && roundReady && curRound < 3) {
             roundReady = false;
             spawnEnemy();
@@ -72,6 +90,7 @@ public class RoundHandler : MonoBehaviour {
         }
         goldText.text = "" + gold;
         roundText.text = "Round: " + (curRound + 1);
+
         if(move && distance < travelDistance) {
             Vector3 oldPosition = background.transform.position;
             background.transform.Translate(-transform.right * Time.deltaTime * speed);
