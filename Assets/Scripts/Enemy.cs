@@ -7,12 +7,35 @@ public class Enemy : Entity
 
 	public float Speed = 5F;
 	public float Damage = 10F;
+	public GameObject Gold;
 
 	private Rigidbody2D _rigidbody;
 	private float _nextAttack = 0F;
 
 	private GameObject _target = null;
-	private bool _retreating = false;
+	public bool Retreating = false;
+	
+	
+	public override float Health
+	{
+		set
+		{
+			base.Health = value;
+			if (Health <= 0)
+			{
+				Die();
+			}
+		}
+	}
+
+	public void Die()
+	{
+		Destroy(gameObject);
+		if (Retreating)
+		{
+            Instantiate(Gold, transform.position, Quaternion.identity);
+		}
+	}
 
 	// Use this for initialization
 	public new void Start ()
@@ -22,11 +45,11 @@ public class Enemy : Entity
 		Health = MaxHealth;
 	}
 
-	private void ChangeDirection()
+	public void ChangeDirection()
 	{
-		if (!_retreating)
+		if (!Retreating)
 		{
-			_retreating = true;
+			Retreating = true;
             Vector3 newScale = transform.localScale;
             newScale.x *= -1;
             transform.localScale = newScale;
@@ -54,7 +77,7 @@ public class Enemy : Entity
 		}
 		else
 		{
-			if (_retreating)
+			if (Retreating)
 			{
 				_rigidbody.velocity = Vector2.left * Speed;
 			}
@@ -64,6 +87,12 @@ public class Enemy : Entity
 			}
 		}
 		
+		Vector3 screenPoint = Camera.main.WorldToViewportPoint(transform.position);
+		if (screenPoint.x < -.1)
+		{
+			Destroy(gameObject);
+		};
+
 	}
 
 	private void _tryAttack()

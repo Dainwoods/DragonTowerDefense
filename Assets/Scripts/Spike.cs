@@ -20,8 +20,11 @@ public class Spike : Trap
 			{
 				_enemies[i].TakeDamage(Damage);
 			}
-            Health -= 1;
-			_nextAttack = Time.time + DamageDelay;
+			if (_enemies.Count > 0)
+			{
+                Health -= 1;
+                _nextAttack = Time.time + DamageDelay;
+			}
 		}
 	}
 	
