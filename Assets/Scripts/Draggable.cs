@@ -4,8 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler {
-
-    public Transform parentToReturnTo = null;
+    
     public GameObject TrapToCreate = null;
     public int cost;
 
@@ -15,20 +14,17 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     public void OnBeginDrag(PointerEventData eventData) {
         Debug.Log("onBeginDrag");
         GetComponent<RectTransform>().localScale = new Vector3(0, 0, 0);
+        
+        GameObject clone = Instantiate(eventData.pointerDrag) as GameObject;
+        clone.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
+        int currentSiblingIndex = eventData.pointerDrag.transform.GetSiblingIndex();
+        clone.transform.SetParent(this.transform.parent);
+        clone.transform.SetSiblingIndex(currentSiblingIndex);
+        clone.transform.localScale = new Vector3(1, 1, 1);
+        
+        this.transform.SetParent(this.transform.parent.parent);
 
-        if (this.transform.parent.name == "TrapUI") {
-            GameObject clone = Instantiate(eventData.pointerDrag) as GameObject;
-            clone.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
-            int currentSiblingIndex = eventData.pointerDrag.transform.GetSiblingIndex();
-            clone.transform.SetParent(this.transform.parent);
-            clone.transform.SetSiblingIndex(currentSiblingIndex);
-            clone.transform.localScale = new Vector3(1, 1, 1);
-
-            parentToReturnTo = this.transform.parent;
-            this.transform.SetParent(this.transform.parent.parent);
-
-            GetComponent<CanvasGroup>().blocksRaycasts = false;
-    }
+        GetComponent<CanvasGroup>().blocksRaycasts = false;
         
         // Create an indicator of where the trap will land
         _trapIndicator = CreateOnPosition();
@@ -55,10 +51,7 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
             _trapIndicator.GetComponent<SpriteRenderer>().color = new Color(1f, 0.3f, 0.3f, .5f);
         }
         
-        if (parentToReturnTo.name == "TrapUI")
-        {
-            this.transform.position = eventData.position;
-        }
+        this.transform.position = eventData.position;
     }
 
     public bool canPlace()
@@ -69,14 +62,10 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 
     public void OnEndDrag(PointerEventData eventData) {
         Debug.Log("OnEndDrag");
-        if (transform.parent.name == "TrapUI")
-        {
-            transform.SetParent(parentToReturnTo);
-            parentToReturnTo = null;
 
-            GetComponent<CanvasGroup>().blocksRaycasts = true;
-        }
-        else if (canPlace() && RoundHandler.gold >= cost)
+        GetComponent<CanvasGroup>().blocksRaycasts = true;
+
+        if (canPlace() && RoundHandler.gold >= cost)
         {
             CreateOnPosition();
             Destroy(gameObject);
