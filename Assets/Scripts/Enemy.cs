@@ -50,10 +50,17 @@ public class Enemy : Entity
 		if (!Retreating)
 		{
 			Retreating = true;
-            Vector3 newScale = transform.localScale;
-            newScale.x *= -1;
-            transform.localScale = newScale;
+			Vector3 newScale = transform.localScale;
+			newScale.x *= -1;
+			transform.localScale = newScale;
 			RoundHandler.gold -= 1;
+		}
+		else
+		{
+			Retreating = false;
+			Vector3 newScale = transform.localScale;
+			newScale.x *= -1;
+			transform.localScale = newScale;
 		}
 	}
 
@@ -87,10 +94,11 @@ public class Enemy : Entity
 			}
 		}
 		
+		// Escape
 		Vector3 screenPoint = Camera.main.WorldToViewportPoint(transform.position);
-		if (screenPoint.x < -.1)
+		if (screenPoint.x < -.1 && Retreating)
 		{
-			Destroy(gameObject);
+			ChangeDirection();
 		};
 
 	}
