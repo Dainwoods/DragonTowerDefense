@@ -47,6 +47,7 @@ public class RoundHandler : MonoBehaviour {
     void startNextRound() {
         if (roundReady && curRound < 3) {
             roundReady = false;
+            nextRoundButton.gameObject.SetActive(false);
             spawnEnemy();
         }
     }
@@ -69,20 +70,16 @@ public class RoundHandler : MonoBehaviour {
             destroyTraps();
             destroyCoins();
             roundReady = true;
+            nextRoundButton.gameObject.SetActive(true);
             curRound++;
             gold += curRound * 2;
             move = true;
             distance = 0;
         }
 
-        if (roundReady) {
-            nextRoundButton.gameObject.SetActive(true);
-        } else {
-            nextRoundButton.gameObject.SetActive(false);
-        }
-
         if (Input.GetKeyDown(KeyCode.Space) && roundReady && curRound < 3) {
             roundReady = false;
+            nextRoundButton.gameObject.SetActive(false);
             spawnEnemy();
         }
         if(Input.GetKeyDown(KeyCode.E) && aliveEnemies > 0) {

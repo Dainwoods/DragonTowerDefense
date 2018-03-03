@@ -22,7 +22,8 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
             int currentSiblingIndex = eventData.pointerDrag.transform.GetSiblingIndex();
             clone.transform.SetParent(this.transform.parent);
             clone.transform.SetSiblingIndex(currentSiblingIndex);
-            
+            clone.transform.localScale = new Vector3(1, 1, 1);
+
             parentToReturnTo = this.transform.parent;
             this.transform.SetParent(this.transform.parent.parent);
 
