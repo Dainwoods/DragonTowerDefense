@@ -12,14 +12,16 @@ public class RoundHandler : MonoBehaviour {
     private bool move;
     private float distance;
 
+    public static int gold;
+
     public int firstRound;
     public int secondRound;
     public int thirdRound;
     public float spawnWait;
     public GameObject enemy;
     public int startGold;
-    public static int gold;
     public Text goldText;
+    public Text roundText;
     public GameObject background;
     public float travelDistance;
     public float speed;
@@ -69,6 +71,7 @@ public class RoundHandler : MonoBehaviour {
             Destroy(enemies[0]);
         }
         goldText.text = "" + gold;
+        roundText.text = "Round: " + (curRound + 1);
         if(move && distance < travelDistance) {
             Vector3 oldPosition = background.transform.position;
             background.transform.Translate(-transform.right * Time.deltaTime * speed);
