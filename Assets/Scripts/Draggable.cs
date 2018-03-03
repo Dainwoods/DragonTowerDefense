@@ -10,6 +10,20 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 
     private Camera _camera = null;
     private GameObject _trapIndicator;
+    
+	public void Update () {
+	    if (RoundHandler.roundHandler)
+	    {
+            if (RoundHandler.roundHandler.IsFiring)
+            {
+                GetComponent<CanvasGroup>().alpha = 0.5f;
+            }
+            else
+            {
+                GetComponent<CanvasGroup>().alpha = 1;
+            }
+	    }
+	}
 
     public void OnBeginDrag(PointerEventData eventData) {
         Debug.Log("onBeginDrag");
@@ -33,6 +47,10 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 
     public void OnDrag(PointerEventData eventData)
     {
+        if (RoundHandler.roundHandler.IsFiring)
+        {
+            return;
+        }
         
         // Have trap indicator follow under draggable
         if (_trapIndicator != null)

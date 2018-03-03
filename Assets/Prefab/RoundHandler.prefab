@@ -51,6 +51,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98ae10da52eb59d4d89304cd2374d6e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Player: {fileID: 0}
+  Fireball: {fileID: 1669922444906080, guid: ce45268a3b1933945b1a9d254d73a9fc, type: 2}
+  FireDelay: 5
   firstRound: 3
   secondRound: 5
   thirdRound: 7

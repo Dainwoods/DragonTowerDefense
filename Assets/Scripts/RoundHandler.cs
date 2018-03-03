@@ -13,6 +13,14 @@ public class RoundHandler : MonoBehaviour {
     private float distance;
 
     public static int gold;
+    private float _nextAttack = 0;
+    
+    public GameObject Player;
+    public GameObject Fireball;
+    
+    public float FireDelay = 5;
+    private bool isFiring = false;
+    public static RoundHandler roundHandler;
 
     public int firstRound;
     public int secondRound;
@@ -28,6 +36,27 @@ public class RoundHandler : MonoBehaviour {
     public float travelDistance;
     public float speed;
 
+    public bool IsFiring
+    {
+        get { return isFiring; }
+        set
+        {
+            if (!value)
+            {
+                isFiring = value;
+            }
+            else if (CanFire() && value)
+            {
+                isFiring = value;
+            }
+        }
+    }
+
+    public bool CanFire()
+    {
+        return Time.time >= _nextAttack;
+    }
+    
     // Use this for initialization
     void Start () {
         curRound = 0;
@@ -42,6 +71,7 @@ public class RoundHandler : MonoBehaviour {
         distance = 0;
 
         nextRoundButton.onClick.AddListener(startNextRound);
+        roundHandler = this;
     }
 
     void startNextRound() {
@@ -51,7 +81,7 @@ public class RoundHandler : MonoBehaviour {
             spawnEnemy();
         }
     }
-
+    
     void spawnEnemy() {
         Vector3 spawnPosition = new Vector3(-10, 0, 0);
         Quaternion spawnRotiation = Quaternion.identity;
@@ -97,6 +127,21 @@ public class RoundHandler : MonoBehaviour {
         else if(distance == travelDistance) {
             move = false;
         }
+	    
+		if (isFiring && CanFire() && Input.GetMouseButton(0)) {
+			var fireball = Instantiate(Fireball, Player.transform.position, Player.transform.rotation);
+			Vector2 target = Camera.main.ScreenToWorldPoint (new Vector2 (Input.mousePosition.x, 
+				Input.mousePosition.y));
+
+		    var fireballBody = fireball.GetComponent<Rigidbody2D>();
+		    
+			Vector2 fireOrigin = new Vector2 (fireballBody.position.x, fireballBody.position.y);
+			Vector2 fireDirection = target - fireOrigin;
+			fireDirection.Normalize();
+			fireballBody.velocity = fireDirection * 10f;
+		    _nextAttack = Time.time + FireDelay;
+		    isFiring = false;
+		}
 	}
 
     void destroyTraps() {
