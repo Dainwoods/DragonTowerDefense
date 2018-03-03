@@ -2,7 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Fireball : MonoBehaviour {
+public class Fireball : MonoBehaviour
+{
+
+	public float Damage = 50;
+	public float Radius = 2;
 	
 	public void OnTriggerEnter2D(Collider2D collision) {
 		if (collision.gameObject.CompareTag("Enemy"))
@@ -12,13 +16,12 @@ public class Fireball : MonoBehaviour {
 			Destroy(gameObject);
 			
 			
-//            var enemyLayer = 1 << LayerMask.NameToLayer("Trap");
-			Collider2D[] collisions = Physics2D.OverlapCircleAll(transform.position, 2);
+			Collider2D[] collisions = Physics2D.OverlapCircleAll(transform.position, Radius);
 			for (int i = 0; i < collisions.Length; i++)
 			{
 				if (collisions[i].CompareTag("Enemy"))
 				{
-                    collisions[i].GetComponent<Enemy>().TakeDamage(1000);
+                    collisions[i].GetComponent<Enemy>().TakeDamage(Damage);
 				}
 			}
 		}
