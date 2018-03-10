@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class RoundHandler : MonoBehaviour {
 
@@ -96,6 +97,17 @@ public class RoundHandler : MonoBehaviour {
 	void Update () {
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
         aliveEnemies = enemies.Length;
+
+        if (gold <= 0){
+            bool goldOnScreen = false;
+            for (int i = 0; i < enemies.Length; i++){
+                goldOnScreen = goldOnScreen || enemies[i].GetComponent<Enemy>().HasGold;
+            }
+            if (!goldOnScreen){
+                SceneManager.LoadScene("Main", LoadSceneMode.Single);
+            }
+        }
+
         if(aliveEnemies == 0 && curRound < 3 && enemyArr[curRound] == 0) {
             destroyTraps();
             destroyCoins();
