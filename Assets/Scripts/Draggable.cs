@@ -80,7 +80,7 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 
         GetComponent<CanvasGroup>().blocksRaycasts = true;
 
-        if (canPlace() && RoundHandler.gold >= cost)
+        if (canPlace() && RoundHandler.gold > cost)
         {
             CreateOnPosition();
             Destroy(gameObject);
