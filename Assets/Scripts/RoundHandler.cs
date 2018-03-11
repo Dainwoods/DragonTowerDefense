@@ -7,7 +7,6 @@ using UnityEngine.SceneManagement;
 public class RoundHandler : MonoBehaviour {
 
     private int curRound;
-    private int enemiesRemaining;
     private bool roundReady;
     private int enemiesToSpawn;
     private bool move;
@@ -30,6 +29,7 @@ public class RoundHandler : MonoBehaviour {
     public Text goldText;
     public Text roundText;
     public Text roundReadyText;
+    public Text EnemiesRemainingText;
     public Button nextRoundButton;
     public GameObject background;
     public float travelDistance;
@@ -124,7 +124,8 @@ public class RoundHandler : MonoBehaviour {
         }
 	    
         goldText.text = "" + gold;
-        roundText.text = "Round: " + (curRound + 1);
+	    roundText.text = "Round " + (curRound + 1) + " of " + RoundEnemyCounts.Count;
+	    EnemiesRemainingText.text = (aliveEnemies + enemiesToSpawn) + " enemies remaining";
 
         if (move && distance < travelDistance) {
             Vector3 oldPosition = background.transform.position;

@@ -61,6 +61,7 @@ MonoBehaviour:
   goldText: {fileID: 0}
   roundText: {fileID: 0}
   roundReadyText: {fileID: 0}
+  EnemiesRemainingText: {fileID: 0}
   nextRoundButton: {fileID: 0}
   background: {fileID: 0}
   travelDistance: 17.72
