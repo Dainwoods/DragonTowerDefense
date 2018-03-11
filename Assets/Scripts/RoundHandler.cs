@@ -121,9 +121,6 @@ public class RoundHandler : MonoBehaviour {
 
         if (Input.GetKeyDown(KeyCode.Space) && roundReady && curRound < RoundEnemyCounts.Count) {
             startNextRound();
-//            roundReady = false;
-//            nextRoundButton.gameObject.SetActive(false);
-//            spawnEnemy();
         }
 	    
         goldText.text = "" + gold;
