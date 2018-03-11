@@ -6,10 +6,15 @@ using UnityEngine.UI;
 public class FireballButton : MonoBehaviour
 {
 	public GameObject RoundHandler;
+    public Sprite enabledSprite;
+    public Sprite disabledSprite;
+
+    private Image imageComponent;
 
 	// Use this for initialization
 	void Start () {
-		Button btn = GetComponent<Button>();
+        imageComponent = this.GetComponent<Image>();
+        Button btn = GetComponent<Button>();
 		btn.onClick.AddListener(OnClick);
 	}
 	
@@ -19,13 +24,13 @@ public class FireballButton : MonoBehaviour
 		RoundHandler roundHandlerScript = RoundHandler.GetComponent<RoundHandler>();
 		if (roundHandlerScript.CanFire())
 		{
-			GetComponent<CanvasGroup>().alpha = 1;
+            imageComponent.sprite = enabledSprite;
 		}
 		else
 		{
-			GetComponent<CanvasGroup>().alpha = 0.5f;
+            imageComponent.sprite = disabledSprite;
 		}
-	}
+    }
 
 	void OnClick()
 	{

@@ -288,6 +288,24 @@ Prefab:
       propertyPath: RoundHandler
       value: 
       objectReference: {fileID: 889836696}
+    - target: {fileID: 114448752118426514, guid: b4bf4e7f9a997468b82f8fc12289b2fd,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 748ca286c458e4b2c84778de352393c8,
+        type: 3}
+    - target: {fileID: 114120015480342360, guid: b4bf4e7f9a997468b82f8fc12289b2fd,
+        type: 2}
+      propertyPath: enabledSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 748ca286c458e4b2c84778de352393c8,
+        type: 3}
+    - target: {fileID: 114120015480342360, guid: b4bf4e7f9a997468b82f8fc12289b2fd,
+        type: 2}
+      propertyPath: disabledSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 8614059a2e8f34cb898bc2919bcdf0fe,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b4bf4e7f9a997468b82f8fc12289b2fd, type: 2}
   m_IsPrefabParent: 0
