@@ -58,7 +58,10 @@ public class Enemy : Entity
 		}
         Retreating = !Retreating;
         Vector3 newScale = transform.localScale;
-        newScale.x *= -1;
+		if ((Retreating && newScale.x > 0) || (!Retreating && newScale.x < 0))
+		{
+            newScale.x *= -1;
+		}
         transform.localScale = newScale;
     }
 
