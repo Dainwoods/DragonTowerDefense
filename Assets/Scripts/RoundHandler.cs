@@ -35,6 +35,8 @@ public class RoundHandler : MonoBehaviour {
     public float travelDistance;
     public float speed;
 
+    public GameObject TimerBar;
+
     public bool IsFiring
     {
         get { return isFiring; }
@@ -94,11 +96,19 @@ public class RoundHandler : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+	    // Update attack timer bar
+	    float percent = (_nextAttack - Time.time) / FireDelay;
+	    percent = Mathf.Max(Mathf.Min(percent, 1), 0);
+	    TimerBar.GetComponent<Slider>().value = percent;    
+	    
+	    
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
         int aliveEnemies = enemies.Length;
 
         if (gold <= 0){
-            bool goldOnScreen = false;
+            GameObject[] coins = GameObject.FindGameObjectsWithTag("Coin");
+            bool goldOnScreen = coins.Length > 0;
+            
             for (int i = 0; i < enemies.Length; i++){
                 goldOnScreen = goldOnScreen || enemies[i].GetComponent<Enemy>().HasGold;
             }
