@@ -14,9 +14,16 @@ public class Enemy : Entity
 
 	private GameObject _target = null;
 	public bool Retreating = false;
-	
-	
-	public override float Health
+    public bool HasGold = false;
+
+    private Color startColor;
+    public SpriteRenderer renderer;
+    public float damageTimer;
+    private float timer;
+    private bool damageTaken;
+
+
+    public override float Health
 	{
 		set
 		{
@@ -41,7 +48,9 @@ public class Enemy : Entity
 	public new void Start ()
 	{
 		base.Start();
-		_rigidbody = GetComponent<Rigidbody2D>();
+        damageTaken = false;
+        startColor = renderer.material.color;
+        _rigidbody = GetComponent<Rigidbody2D>();
 		Health = MaxHealth;
 	}
 
@@ -49,13 +58,20 @@ public class Enemy : Entity
 	{
 		if (!Retreating)
 		{
-			Retreating = true;
-            Vector3 newScale = transform.localScale;
-            newScale.x *= -1;
-            transform.localScale = newScale;
-			RoundHandler.gold -= 1;
+            if (RoundHandler.gold > 0)
+            {
+                RoundHandler.gold -= 1;
+                HasGold = true;
+            }
 		}
-	}
+        Retreating = !Retreating;
+        Vector3 newScale = transform.localScale;
+		if ((Retreating && newScale.x > 0) || (!Retreating && newScale.x < 0))
+		{
+            newScale.x *= -1;
+		}
+        transform.localScale = newScale;
+    }
 
 	public void OnTriggerEnter2D(Collider2D collision)
 	{
@@ -87,15 +103,26 @@ public class Enemy : Entity
 			}
 		}
 		
+		// Escape
 		Vector3 screenPoint = Camera.main.WorldToViewportPoint(transform.position);
-		if (screenPoint.x < -.1)
+		if (screenPoint.x < -.1 && Retreating)
 		{
-			Destroy(gameObject);
+            HasGold = false;
+			ChangeDirection();
 		};
 
-	}
+        if(damageTaken) {
+           timer += Time.deltaTime;
+           if(timer > damageTimer) {
+               damageTaken = false;
+               timer = 0f;
+               renderer.material.color = startColor;
+           }
+       }
 
-	private void _tryAttack()
+    }
+
+    private void _tryAttack()
 	{
 		if (Time.time > _nextAttack)
 		{
@@ -109,4 +136,10 @@ public class Enemy : Entity
 	{
 			_target = target;
 	}
+
+    public void TakeDamage(float Damage) {
+        base.TakeDamage(Damage);
+        renderer.material.color = Color.red;
+        damageTaken = true;
+    }
 }

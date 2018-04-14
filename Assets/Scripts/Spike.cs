@@ -22,7 +22,7 @@ public class Spike : Trap
 			}
 			if (_enemies.Count > 0)
 			{
-                Health -= 1;
+                Health -= 10;
                 _nextAttack = Time.time + DamageDelay;
 			}
 		}

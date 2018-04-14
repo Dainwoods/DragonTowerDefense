@@ -16,20 +16,21 @@ public class Entity : MonoBehaviour {
 	public bool Damageable = false;
 	private float _health;
 
-	// Use this for initialization
-	public void Start ()
+
+    // Use this for initialization
+    public void Start ()
 	{
-		Health = MaxHealth;
+        Health = MaxHealth;
 	}
 	
 	// Update is called once per frame
 	public void Update () {
-		
+       
 	}
 
 	public void TakeDamage(float damage)
 	{
-		Debug.Log(Health);
+        Debug.Log(Health);
 		Health -= damage;
 		if (Health <= 0)
 		{
