@@ -29,7 +29,7 @@ public class Entity : MonoBehaviour {
 
 	public void TakeDamage(float damage)
 	{
-		Debug.Log(Health);
+		Debug.Log("Taking damage " + damage.ToString(), gameObject);
 		Health -= damage;
 		if (Health <= 0)
 		{
