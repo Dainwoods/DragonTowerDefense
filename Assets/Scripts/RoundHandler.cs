@@ -68,6 +68,8 @@ public class RoundHandler : MonoBehaviour {
 
         nextRoundButton.onClick.AddListener(startNextRound);
         roundHandler = this;
+        
+        EnemiesRemainingText.text = RoundEnemyCounts[curRound] + " enemies next";
     }
 
     public void startNextRound() {
@@ -124,6 +126,7 @@ public class RoundHandler : MonoBehaviour {
             roundReady = true;
             nextRoundButton.gameObject.SetActive(true);
             curRound++;
+            EnemiesRemainingText.text = RoundEnemyCounts[curRound] + " enemies next";
             gold += curRound * 2;
             move = true;
             distance = 0;
@@ -135,7 +138,11 @@ public class RoundHandler : MonoBehaviour {
 	    
         goldText.text = "" + gold;
 	    roundText.text = "Round " + (curRound + 1) + " of " + RoundEnemyCounts.Count;
-	    EnemiesRemainingText.text = (aliveEnemies + enemiesToSpawn) + " enemies remaining";
+
+	    if (!roundReady)
+	    {
+            EnemiesRemainingText.text = (aliveEnemies + enemiesToSpawn) + " enemies remaining";
+	    }
 
         if (move && distance < travelDistance) {
             Vector3 oldPosition = background.transform.position;

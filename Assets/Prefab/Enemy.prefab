@@ -172,6 +172,8 @@ MonoBehaviour:
   Speed: 3
   Damage: 10
   Gold: {fileID: 1642593270700068, guid: 1b0aa3e84a4c34621ba7eec3a69b49be, type: 2}
+  Retreating: 0
+  HasGold: 0
 --- !u!212 &212552093554060724
 SpriteRenderer:
   m_ObjectHideFlags: 1
