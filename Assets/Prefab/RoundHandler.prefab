@@ -54,13 +54,15 @@ MonoBehaviour:
   Player: {fileID: 0}
   Fireball: {fileID: 1669922444906080, guid: ce45268a3b1933945b1a9d254d73a9fc, type: 2}
   FireDelay: 5
-  firstRound: 3
-  secondRound: 5
-  thirdRound: 7
+  RoundEnemyCounts: 030000000500000007000000090000000b000000
   spawnWait: 1
   enemy: {fileID: 1440193722463680, guid: 172ba18af699949ab847c5cbde2317d7, type: 2}
   startGold: 10
   goldText: {fileID: 0}
+  roundText: {fileID: 0}
+  roundReadyText: {fileID: 0}
+  EnemiesRemainingText: {fileID: 0}
+  nextRoundButton: {fileID: 0}
   background: {fileID: 0}
   travelDistance: 17.72
   speed: 10

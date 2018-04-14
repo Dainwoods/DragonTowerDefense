@@ -14,6 +14,7 @@ public class Enemy : Entity
 
 	private GameObject _target = null;
 	public bool Retreating = false;
+    public bool HasGold = false;
 	
 	
 	public override float Health
@@ -49,20 +50,20 @@ public class Enemy : Entity
 	{
 		if (!Retreating)
 		{
-			Retreating = true;
-			Vector3 newScale = transform.localScale;
-			newScale.x *= -1;
-			transform.localScale = newScale;
-			RoundHandler.gold -= 1;
+            if (RoundHandler.gold > 0)
+            {
+                RoundHandler.gold -= 1;
+                HasGold = true;
+            }
 		}
-		else
+        Retreating = !Retreating;
+        Vector3 newScale = transform.localScale;
+		if ((Retreating && newScale.x > 0) || (!Retreating && newScale.x < 0))
 		{
-			Retreating = false;
-			Vector3 newScale = transform.localScale;
-			newScale.x *= -1;
-			transform.localScale = newScale;
+            newScale.x *= -1;
 		}
-	}
+        transform.localScale = newScale;
+    }
 
 	public void OnTriggerEnter2D(Collider2D collision)
 	{
@@ -98,6 +99,7 @@ public class Enemy : Entity
 		Vector3 screenPoint = Camera.main.WorldToViewportPoint(transform.position);
 		if (screenPoint.x < -.1 && Retreating)
 		{
+            HasGold = false;
 			ChangeDirection();
 		};
 

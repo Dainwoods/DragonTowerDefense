@@ -8,10 +8,14 @@ public class Coin : MonoBehaviour {
 	    if (collision.gameObject.CompareTag("Enemy"))
 	    {
 		    var enemy = collision.gameObject.GetComponent<Enemy>();
-		    if (!enemy.Retreating)
+		    if (!enemy.HasGold)
 		    {
                 Destroy(gameObject);
-                collision.gameObject.GetComponent<Enemy>().ChangeDirection();
+			    enemy.HasGold = true;
+			    
+			    // Hack to make enemy retreat:
+			    enemy.Retreating = false;
+			    enemy.ChangeDirection();
 		    }
 	    }
     }
