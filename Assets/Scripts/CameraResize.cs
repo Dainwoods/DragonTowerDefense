@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CameraResize : MonoBehaviour {
 
+
     // Use this for initialization
     void Start() {
         // set the desired aspect ratio (the values in this example are
@@ -31,7 +32,7 @@ public class CameraResize : MonoBehaviour {
 
             camera.rect = rect;
         }
-        else // add pillarbox
+        else if(scaleheight > 1.0f)// add pillarbox
         {
             float scalewidth = 1.0f / scaleheight;
 
