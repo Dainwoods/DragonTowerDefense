@@ -106,8 +106,8 @@ MonoBehaviour:
   Textures:
   - {fileID: 21300000, guid: 843ada266db8541acaf98627ababc68a, type: 3}
   - {fileID: 21300000, guid: a5488da959e7a4130979f78f7134953e, type: 3}
-  Damage: 3
-  DamageDelay: 0.1
+  Damage: 30
+  DamageDelay: 1
 --- !u!212 &212142500409815938
 SpriteRenderer:
   m_ObjectHideFlags: 1

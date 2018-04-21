@@ -154,19 +154,15 @@ public class RoundHandler : MonoBehaviour {
         }
 	    
 		if (isFiring && CanFire() && Input.GetMouseButton(0)) {
-			var fireball = Instantiate(Fireball, Player.transform.position, Player.transform.rotation);
-			Vector2 target = Camera.main.ScreenToWorldPoint (new Vector2 (Input.mousePosition.x, 
-				Input.mousePosition.y));
+            GameObject fireballObject = Instantiate(Fireball, Player.transform.position, Player.transform.rotation);
+            Fireball fireball = fireballObject.GetComponent<Fireball>();
+            Vector2 playerPos = Player.transform.position;
+            Vector2 mousePos = Camera.main.ScreenToWorldPoint(new Vector2(Input.mousePosition.x, Input.mousePosition.y));
+            fireball.setTarget(playerPos, mousePos);
 
-		    var fireballBody = fireball.GetComponent<Rigidbody2D>();
-		    
-			Vector2 fireOrigin = new Vector2 (fireballBody.position.x, fireballBody.position.y);
-			Vector2 fireDirection = target - fireOrigin;
-			fireDirection.Normalize();
-			fireballBody.velocity = fireDirection * 10f;
-		    _nextAttack = Time.time + FireDelay;
-		    isFiring = false;
-		}
+            _nextAttack = Time.time + FireDelay;
+            isFiring = false;
+        }
 	}
 
     void destroyTraps() {

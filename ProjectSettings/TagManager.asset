@@ -9,6 +9,7 @@ TagManager:
   - Floor
   - Trap
   - Coin
+  - Fireball
   layers:
   - Default
   - TransparentFX

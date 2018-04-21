@@ -101,8 +101,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6da56b270d68f764690c48c794af8682, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fireball: {fileID: 1859858998967056, guid: 29a4df8cbddec7d4bbf9d336f9a12ab3, type: 2}
+  journeyTime: 1
   Damage: 50
   Radius: 2
+  DidHit: 0
 --- !u!212 &212849627894140234
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -174,6 +174,8 @@ MonoBehaviour:
   Gold: {fileID: 1642593270700068, guid: 1b0aa3e84a4c34621ba7eec3a69b49be, type: 2}
   Retreating: 0
   HasGold: 0
+  renderer: {fileID: 212748529389566982}
+  damageTimer: 0.1
 --- !u!212 &212552093554060724
 SpriteRenderer:
   m_ObjectHideFlags: 1
