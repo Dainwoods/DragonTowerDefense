@@ -17,7 +17,7 @@ public class Enemy : Entity
     public bool HasGold = false;
 
     private Color startColor;
-    public SpriteRenderer renderer;
+    private SpriteRenderer renderer;
     public float damageTimer;
     private float timer;
     private bool damageTaken;
@@ -48,6 +48,7 @@ public class Enemy : Entity
 	public new void Start ()
 	{
 		base.Start();
+		renderer = GetComponent<SpriteRenderer>();
         damageTaken = false;
         startColor = renderer.material.color;
         _rigidbody = GetComponent<Rigidbody2D>();
