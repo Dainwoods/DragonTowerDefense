@@ -28,7 +28,14 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     public void OnBeginDrag(PointerEventData eventData) {
         // Create an indicator of where the trap will land
         _trapIndicator = CreateOnPosition(eventData.position);
-        _trapIndicator.GetComponent<Trap>().Deactivate();
+        if(_trapIndicator.layer != 9 && !RoundHandler.roundHandler.CanFire()) {
+            Debug.Log("destrot fireball");
+            Destroy(_trapIndicator);
+        }
+        else if(_trapIndicator != null && _trapIndicator.layer == 9){
+            Debug.Log("fireball not destroy");
+            _trapIndicator.GetComponent<Trap>().Deactivate();
+        }
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -43,16 +50,20 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         {
             Vector3 trapPosition = _trapIndicator.transform.position;
             Vector3 ownPosition = _camera.ScreenToWorldPoint(eventData.position);
-            _trapIndicator.transform.position = new Vector3(ownPosition.x, trapPosition.y, trapPosition.z);
-        }
+            Debug.Log(_trapIndicator.layer);
+            if(_trapIndicator.layer == 9) {
+                _trapIndicator.transform.position = new Vector3(ownPosition.x, trapPosition.y, trapPosition.z);
+            }
+            else {
+                _trapIndicator.transform.position = new Vector3(ownPosition.x, ownPosition.y, trapPosition.z);
+            }
 
-        if (canPlace())
-        {
-            _trapIndicator.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, .5f);
-        }
-        else
-        {
-            _trapIndicator.GetComponent<SpriteRenderer>().color = new Color(1f, 0.3f, 0.3f, .5f);
+            if(canPlace()) {
+                _trapIndicator.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, .5f);
+            }
+            else {
+                _trapIndicator.GetComponent<SpriteRenderer>().color = new Color(1f, 0.3f, 0.3f, .5f);
+            }
         }
     }
 
@@ -64,17 +75,22 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 
     public void OnEndDrag(PointerEventData eventData) {
         Debug.Log("OnEndDrag");
+        if(_trapIndicator != null) {
+            GetComponent<CanvasGroup>().blocksRaycasts = true;
 
-        GetComponent<CanvasGroup>().blocksRaycasts = true;
+            if(canPlace() && RoundHandler.gold > cost) {
+                if(_trapIndicator.layer != 9) {
+                    RoundHandler.roundHandler.setFire();
+                }
+                else {
+                    CreateOnPosition(eventData.position);
+                }
 
-        if (canPlace() && RoundHandler.gold > cost)
-        {
-            CreateOnPosition(eventData.position);
-
-            // Update current gold
-            RoundHandler.gold = RoundHandler.gold - cost;
+                // Update current gold
+                RoundHandler.gold = RoundHandler.gold - cost;
+            }
+            Destroy(_trapIndicator);
         }
-        Destroy(_trapIndicator);
 
     }
 

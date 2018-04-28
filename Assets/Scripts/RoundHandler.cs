@@ -127,7 +127,7 @@ public class RoundHandler : MonoBehaviour {
             nextRoundButton.gameObject.SetActive(true);
             curRound++;
             EnemiesRemainingText.text = RoundEnemyCounts[curRound] + " enemies next";
-            gold += curRound * 2;
+            //gold += curRound * 2;
             move = true;
             distance = 0;
         }
@@ -153,7 +153,7 @@ public class RoundHandler : MonoBehaviour {
             move = false;
         }
 	    
-		if (isFiring && CanFire() && Input.GetMouseButton(0)) {
+		/*if (isFiring && CanFire() && Input.GetMouseButton(0)) {
             GameObject fireballObject = Instantiate(Fireball, Player.transform.position, Player.transform.rotation);
             Fireball fireball = fireballObject.GetComponent<Fireball>();
             Vector2 playerPos = Player.transform.position;
@@ -162,16 +162,31 @@ public class RoundHandler : MonoBehaviour {
 
             _nextAttack = Time.time + FireDelay;
             isFiring = false;
-        }
+        }*/
 	}
+
+    public void setFire() {
+        GameObject fireballObject = Instantiate(Fireball, Player.transform.position, Player.transform.rotation);
+        Fireball fireball = fireballObject.GetComponent<Fireball>();
+        Vector2 playerPos = Player.transform.position;
+        Vector2 mousePos = Camera.main.ScreenToWorldPoint(new Vector2(Input.mousePosition.x, Input.mousePosition.y));
+        fireball.setTarget(playerPos, mousePos);
+        _nextAttack = Time.time + FireDelay;
+        isFiring = false;
+    }
 
     void destroyTraps() {
         GameObject[] traps = GameObject.FindGameObjectsWithTag("Trap");
         for(int i = 0; i < traps.Length ; i++) {
+            Trap trap = traps[i].GetComponent<Trap>();
+            gold += trap.getGold();
+            Debug.Log(trap.getGold());
             Destroy(traps[i]);
         }
         traps = GameObject.FindGameObjectsWithTag("DamageableTrap");
         for (int i = 0; i < traps.Length; i++) {
+            Trap trap = traps[i].GetComponent<Trap>();
+            gold += trap.getGold();
             Destroy(traps[i]);
         }
     }

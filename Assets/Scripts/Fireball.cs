@@ -6,6 +6,7 @@ using UnityEngine;
 public class Fireball : MonoBehaviour
 {
     public GameObject Target;
+    public GameObject explosion;
 
     public float journeyTime = 1.0f;
     private float startTime;
@@ -56,6 +57,7 @@ public class Fireball : MonoBehaviour
                 collisions[i].GetComponent<Enemy>().TakeDamage(Damage);
             }
         }
+        Instantiate(explosion, transform.position, transform.rotation);
         Destroy(gameObject);
     }
 

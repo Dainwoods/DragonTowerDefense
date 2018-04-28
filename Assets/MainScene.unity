@@ -2262,8 +2262,7 @@ MonoBehaviour:
 --- !u!114 &2056734063
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114120015480342360, guid: b4bf4e7f9a997468b82f8fc12289b2fd,
-    type: 2}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2056734060}
   m_Enabled: 1
@@ -2272,7 +2271,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RoundHandler: {fileID: 889836696}
-  Fireball: {fileID: 0}
   enabledSprite: {fileID: 21300000, guid: 748ca286c458e4b2c84778de352393c8, type: 3}
   disabledSprite: {fileID: 21300000, guid: 8614059a2e8f34cb898bc2919bcdf0fe, type: 3}
 --- !u!114 &2056734064
@@ -2321,6 +2319,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cabafa482a822ad488ee1e83b340f349, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TrapToCreate: {fileID: 1669922444906080, guid: ce45268a3b1933945b1a9d254d73a9fc,
+  TrapToCreate: {fileID: 1859858998967056, guid: 29a4df8cbddec7d4bbf9d336f9a12ab3,
     type: 2}
   cost: 0

@@ -102,6 +102,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Target: {fileID: 1859858998967056, guid: 29a4df8cbddec7d4bbf9d336f9a12ab3, type: 2}
+  explosion: {fileID: 1868458939735036, guid: 76f51f6f570a5ab4daf2c6cf483f9804, type: 2}
   journeyTime: 1
   Damage: 50
   Radius: 2

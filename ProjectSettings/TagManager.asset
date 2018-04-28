@@ -10,6 +10,7 @@ TagManager:
   - Trap
   - Coin
   - Fireball
+  - Target
   layers:
   - Default
   - TransparentFX

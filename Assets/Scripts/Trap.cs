@@ -44,6 +44,21 @@ public class Trap : Entity
 		IsActive = false;
 	}
 
+    public int getGold() {
+        float retVal;
+        if(base.Health > 2f * MaxHealth / 3f) {
+            retVal = (2f * Cost / 3f);
+        }
+        else if(base.Health > 1f * MaxHealth / 3f) {
+            retVal = (Cost / 3f);
+        }
+        else {
+            retVal = 0;
+        }
+        retVal = Mathf.Floor(retVal);
+        return (int) retVal;
+    }
+
 	// Update is called once per frame
 	public void Update () {
 		base.Update();

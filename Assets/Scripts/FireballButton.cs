@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class FireballButton : MonoBehaviour
 {
 	public GameObject RoundHandler;
-    public GameObject Fireball;
+    //public GameObject Fireball;
     public Sprite enabledSprite;
     public Sprite disabledSprite;
 
@@ -18,15 +18,15 @@ public class FireballButton : MonoBehaviour
 
     // Use this for initialization
     void Start () {
-        /*imageComponent = this.GetComponent<Image>();
-        Button btn = GetComponent<Button>();
+        imageComponent = this.GetComponent<Image>();
+        /*Button btn = GetComponent<Button>();
 		btn.onClick.AddListener(OnClick);*/
 	}
 	
 	// Update is called once per frame
 	void Update ()
 	{
-		/*RoundHandler roundHandlerScript = RoundHandler.GetComponent<RoundHandler>();
+		RoundHandler roundHandlerScript = RoundHandler.GetComponent<RoundHandler>();
 		if (roundHandlerScript.CanFire())
 		{
             imageComponent.sprite = enabledSprite;
@@ -34,7 +34,7 @@ public class FireballButton : MonoBehaviour
 		else
 		{
             imageComponent.sprite = disabledSprite;
-		}*/
+		}
     }
 
 	void OnClick()
