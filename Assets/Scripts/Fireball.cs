@@ -20,6 +20,8 @@ public class Fireball : MonoBehaviour
 
     private GameObject target;
 
+    private bool IsActive;
+
     public void setTarget(Vector2 a, Vector2 b) {
         startTime = Time.time;
         startPos = a;
@@ -55,5 +57,9 @@ public class Fireball : MonoBehaviour
             }
         }
         Destroy(gameObject);
+    }
+
+    public void Deactivate() {
+        IsActive = false;
     }
 }

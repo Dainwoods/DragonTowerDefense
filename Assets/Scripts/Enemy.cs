@@ -22,6 +22,8 @@ public class Enemy : Entity
     private float timer;
     private bool damageTaken;
 
+    public int goldTaken;
+
 
     public override float Health
 	{
@@ -61,7 +63,7 @@ public class Enemy : Entity
 		{
             if (RoundHandler.gold > 0)
             {
-                RoundHandler.gold -= 1;
+                RoundHandler.gold -= goldTaken;
                 HasGold = true;
             }
 		}

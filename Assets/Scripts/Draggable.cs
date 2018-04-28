@@ -87,6 +87,7 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         }
         Vector3 point = _camera.ScreenToWorldPoint(position);
         point = new Vector3(point.x, point.y, 0);
+        Debug.Log(TrapToCreate);
         return Instantiate(TrapToCreate, point, Quaternion.identity);
     }
 }

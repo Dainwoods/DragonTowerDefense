@@ -24,9 +24,9 @@ GameObject:
   - component: {fileID: 114291340825436942}
   - component: {fileID: 58135910114189502}
   - component: {fileID: 114639374559572936}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Fireball
-  m_TagString: Untagged
+  m_TagString: Fireball
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -101,7 +101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6da56b270d68f764690c48c794af8682, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireball: {fileID: 1859858998967056, guid: 29a4df8cbddec7d4bbf9d336f9a12ab3, type: 2}
+  Target: {fileID: 1859858998967056, guid: 29a4df8cbddec7d4bbf9d336f9a12ab3, type: 2}
   journeyTime: 1
   Damage: 50
   Radius: 2
