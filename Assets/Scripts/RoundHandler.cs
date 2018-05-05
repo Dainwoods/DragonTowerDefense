@@ -53,6 +53,11 @@ public class RoundHandler : MonoBehaviour {
         }
     }
 
+    public void playDeathSound() {
+        AudioSource audio = GetComponent<AudioSource>();
+        audio.Play();
+    }
+
     public bool CanFire()
     {
         return Time.time >= _nextAttack;
@@ -180,7 +185,6 @@ public class RoundHandler : MonoBehaviour {
         for(int i = 0; i < traps.Length ; i++) {
             Trap trap = traps[i].GetComponent<Trap>();
             gold += trap.getGold();
-            Debug.Log(trap.getGold());
             Destroy(traps[i]);
         }
         traps = GameObject.FindGameObjectsWithTag("DamageableTrap");
@@ -198,7 +202,7 @@ public class RoundHandler : MonoBehaviour {
         for (int i = 0; i < coins.Length; i++)
         {
             Destroy(coins[i]);
-            RoundHandler.gold += 1;
+            RoundHandler.gold += 7;
         }
     }
 }

@@ -101,7 +101,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxHealth: 100
   Damageable: 0
-  Cost: 0
+  Cost: 6
   IsActive: 1
   Textures:
   - {fileID: 21300000, guid: 77a4ce0785ba741d79bf2e016e1769dd, type: 3}

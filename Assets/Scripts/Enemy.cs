@@ -39,7 +39,9 @@ public class Enemy : Entity
 
 	public void Die()
 	{
-		Destroy(gameObject);
+        GameObject[] handlers = GameObject.FindGameObjectsWithTag("GameController");
+        handlers[0].GetComponent<RoundHandler>().playDeathSound();
+        Destroy(gameObject);
 		if (Retreating)
 		{
             Instantiate(Gold, transform.position, Quaternion.identity);

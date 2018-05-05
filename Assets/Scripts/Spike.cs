@@ -36,6 +36,7 @@ public class Spike : Trap
 		}
 	}
 
+
 	public void OnTriggerExit2D(Collider2D collision)
 	{
 		if (IsActive && collision.gameObject.CompareTag("Enemy"))

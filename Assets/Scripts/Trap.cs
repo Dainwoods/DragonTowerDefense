@@ -56,7 +56,7 @@ public class Trap : Entity
             retVal = 0;
         }
         retVal = Mathf.Floor(retVal);
-        return (int) retVal;
+        return (int)retVal;
     }
 
 	// Update is called once per frame
